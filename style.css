@@ -1,11 +1,1 @@
 @import "tailwindcss";
-
-.input-with-icon::before {
-  content: "@";
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-  z-index: 10; /* Чтобы иконка была поверх инпута */
-}

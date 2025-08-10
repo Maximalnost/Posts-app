@@ -9,13 +9,21 @@
 </head>
 <body>
     <div class="bg-gray-950 min-h-screen flex items-center justify-center flex-col">
-        <form id="auth-form" class="border border-gray-50/50 flex flex-col rounded-xl p-10 pt-5 gap-4 w-1/2 max-w-80">
+        <form id="auth-form" class="border border-gray-50/50 flex flex-col rounded-xl p-10 pt-5 gap-2 w-1/2 max-w-80">
             <h1 class="text-white  text-3xl mb-5 self-center">Авторизация</h1>
-            <input id="auth-form-email" type="text" name="email" placeholder="Введите почту" class="input-with-icon border border-gray-50/50 rounded-md text-white px-3 py-2 w-full bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk5OSI+PHBhdGggZD0iTTIwIDRINEMyLjkgNCAyIDQuOSAyIDZ2MTJjMCAxLjEuOSAyIDIgMmgxNmMxLjEgMCAyLS45IDItMlY2YzAtMS4xLS45LTItMi0yem0wIDRsLTggNS04LTVWNmw4IDUgOC01djJ6Ii8+PC9zdmc+')] bg-no-repeat bg-[length:20px_20px] bg-[left_10px_center] pl-8 focus:bg-none focus:placeholder:opacity-0 focus:pl-3 ">
-            <input id="auth-form-password" type="password" name="password" placeholder="Введите пароль" class="border border-gray-50/50 rounded-md text-white px-3 py-2 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzk5OSI+PHBhdGggZD0iTTE4IDhoLTFWNmMwLTIuNzYtMi4yNC01LTUtNVM3IDMuMjQgNyA2djJINmMtMS4xIDAtMiAuOS0yIDJ2MTBjMCAxLjEuOSAyIDIgMmgxMmMxLjEgMCAyLS45IDItMlYxMGMwLTEuMS0uOS0yLTItMnptLTYgOWMtMS4xIDAtMi0uOS0yLTJzLjktMiAyLTIgMiAuOSAyIDItLjkgMi0yIDJ6bTMuMS05SDguOVY2YzAtMS43MSAxLjM5LTMuMSAzLjEtMy4xIDEuNzEgMCAzLjEgMS4zOSAzLjEgMy4xdjJ6Ii8+PC9zdmc+')] bg-no-repeat bg-[length:20px_20px] bg-[left_10px_center] pl-8 focus:bg-none focus:placeholder:opacity-0 focus:pl-3 disabled:opacity-45" disabled >
+            <div>
+                <input id="auth-form-email" type="text" name="email" placeholder="Введите почту" class="input-with-icon border border-gray-50/50 rounded-md text-white px-3 py-2 w-full bg-[url('https://api.iconify.design/material-symbols:mail-outline-rounded.svg?color=%23f9fafb')] bg-no-repeat bg-[length:20px_20px] bg-[left_8px_center] pl-8 focus:placeholder:opacity-0" autofocus>
+                <p id="email-error" class="text-red-600 text-xs mt-1 invisible">Введите корректный email</p>
+            </div>
+            <div class="relative">
+                <input id="auth-form-password" type="password" name="password" placeholder="Введите пароль" class="border border-gray-50/50 rounded-md text-white px-3 py-2 w-full bg-[url('https://api.iconify.design/mynaui:lock-password.svg?color=%23f9fafb')] bg-no-repeat bg-[length:20px_20px] bg-[left_8px_center] pl-8 focus:placeholder:opacity-0 disabled:opacity-45 peer" disabled>
+
+                <button id="show-password" class=" hidden absolute right-3 top-1/3 -translate-y-1/3 w-5 h-5 appearance-none cursor-pointer  bg-no-repeat peer-disabled:opacity-25 peer-not-focus:opacity-45"   style="background-image: url(https://api.iconify.design/mdi:eye-outline.svg?color=%23f9fafb)" data-visibility="false"></button>
+                
+                <p id="password-error" class="text-red-600 text-xs mt-1 invisible">Неверный пароль</p>
+            </div>
             <input id="auth-form-submit" type="submit" value="Войти" class="rounded-md bg-blue-700 text-white px-3 py-2 cursor-pointer hover:bg-blue-800 disabled:opacity-45 disabled:bg-blue-700 disabled:cursor-auto" disabled>
-            <!-- Добавить скрыть/открыть пароль -->
-        </form>
+        </form> 
     </div>
 
 
