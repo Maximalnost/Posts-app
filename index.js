@@ -24,12 +24,14 @@ const validationRules = {
     passwordRegex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{4,}$/,
 }
 
+const formTypes = ['auth', 'reg'];
+
 const formValidation = {
     email: false,
     password: false,
 };
 
-const isAlertErrorVisible = false;
+let isAlertErrorVisible = false;
 
 const passwordIcons = {
     eyeOpen: 'url(https://api.iconify.design/mdi:eye-outline.svg?color=%23f9fafb)',
@@ -64,7 +66,7 @@ const authFormMarkup = `
 `
 
 const regFormMarkup = `
- <form id="registration-form" class="border border-gray-50/50 flex flex-col rounded-xl p-10 pt-5 gap-2 w-1/2 max-w-80">
+ <form id="auth-form" class="border border-gray-50/50 flex flex-col rounded-xl p-10 pt-5 gap-2 w-1/2 max-w-80">
             <h1 class="text-white  text-3xl mb-5 self-center">Регистрация</h1>
             <div>
                 <input id="auth-form-email" type="text" name="email" placeholder="Введите почту" class="input-with-icon border border-gray-50/50 rounded-md text-white px-3 py-2 w-full bg-[url('https://api.iconify.design/material-symbols:mail-outline-rounded.svg?color=%23f9fafb')] bg-no-repeat bg-[length:20px_20px] bg-[left_8px_center] pl-8 focus:placeholder:opacity-0" autofocus>
@@ -88,7 +90,7 @@ const render = (markup) => {
 
 // render(authFormMarkup)
 
-const init = () => {
+const init = (formType) => {
   authForm = document.querySelector("#auth-form");
   authFormEmail = document.querySelector("#auth-form-email");
   authFormPassword = document.querySelector("#auth-form-password");
@@ -111,33 +113,30 @@ authForm.addEventListener('submit', (e)=> {
         formData.email.match(validationRules.emailRegex) && 
         formData.password.match(validationRules.passwordRegex)
     ) {
-    //     try {
-    //     users.forEach((user) => {
-    //         if (formData.email === user.email &&
-    //         formData.password === user.password) 
-    //         {
-    //         console.log('ok');
-    //         throw new Error('');
-    //         }
-    //     });
-    //    } catch (error) {}
-
-    const isUser = users.find(
+    if (formType === formTypes[0]) {
+          const isUser = users.find(
       (user) =>
         formData.email === user.email && formData.password === user.password
     );
 
     if (!isUser) {
-        alertError.classList.remove('hidden');
+        alertError.style.opacity = '1';
         isAlertErrorVisible = true;
         if(isAlertErrorVisible) {
         setTimeout(()=>{
             alertError.classList.add('opacity-0')
         }, 7000)
-    }
+    } 
     } else {
-        alert('Access success')
+        location.href = 'posts.html'
     }
+    } else if (formType === formTypes[1]) {
+        users.push(formData);
+        authForm.remove();
+        render(authFormMarkup);
+        init(formTypes[0]);
+    }
+  
 
     //  { email: "user1@mail.ru", password: "qwe123QWE" },
   }
@@ -206,17 +205,20 @@ showPassword.addEventListener('mousedown', (e) => {
     e.preventDefault();
     authForm.remove();
     render(regFormMarkup);
+    init(formTypes[1]);
   });
+
   registrationLinkInForm.addEventListener("click", (e) => {
     e.preventDefault();
     authForm.remove();
     render(regFormMarkup);
+    init(formTypes[1]);
   });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
   render(authFormMarkup);
-  init();
+  init(formTypes[0]);
 });
 
 
