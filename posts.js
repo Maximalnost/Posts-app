@@ -52,11 +52,18 @@ const posts = [
   }
 ]; 
 
-posts.forEach((post, ) => {
-    postsWrapper.innerHTML += `<div data-id='${post.id}' class="border rounded-3xl p-3 border-white w-100 h-50 flex gap-2 flex-col">
-            <h3 class="text-white text-xl font-bold">${post.title}</h3>
-            <p class="text-white">${post.description}</p>
-            <button class="rounded-md bg-blue-700 text-white px-3 py-2 cursor-pointer hover:bg-blue-800 disabled:opacity-45 disabled:bg-blue-700 disabled:cursor-auto"">Добавить в избранное</button>
-            </div>`
+const renderPosts = () => {
+  let markup = '';
+    posts.forEach((post, ) => {
+      markup += `<div data-id='${post.id}' class="border rounded-3xl p-3 border-white w-100 h-50 flex gap-2 flex-col">
+      <h3 class="text-white text-xl font-bold">${post.title}</h3>
+      <p class="text-white">${post.description}</p>
+      <button class="rounded-md bg-blue-700 text-white px-3 py-2 cursor-pointer hover:bg-blue-800 disabled:opacity-45 disabled:bg-blue-700 disabled:cursor-auto"">Добавить в избранное</button>
+      </div>`
 })
+  postsWrapper.insertAdjacentHTML('afterbegin', markup)
+}
 
+
+
+document.addEventListener('DOMContentLoaded', renderPosts)
