@@ -13,10 +13,10 @@ let authForm,
 const wrapper = document.querySelector("#wrapper");
 
 const users = [
-    {email: 'user1@mail.ru', password: 'qweQWE123'},
-    {email: 'user2@mail.ru', password: 'Qwerty1'},
-    {email: 'user3@mail.ru', password: 'qwerty123A'},
-    {email: 'user4@mail.ru', password: '1234Aa'},
+    {id: 1, email: 'user1@mail.ru', password: 'qweQWE123'},
+    {id: 2, email: 'user2@mail.ru', password: 'Qwerty1'},
+    {id: 3, email: 'user3@mail.ru', password: 'qwerty123A'},
+    {id: 4, email: 'user4@mail.ru', password: '1234Aa'},
 ]
 
 const validationRules = {
@@ -128,6 +128,7 @@ authForm.addEventListener('submit', (e)=> {
         }, 7000)
     } 
     } else {
+        document.cookie = `authUser=${isUser.id}; path=/; max-age=3600`;
         location.href = 'posts.html'
     }
     } else if (formType === formTypes[1]) {
@@ -220,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
   render(authFormMarkup);
   init(formTypes[0]);
 });
-
 
 
 
