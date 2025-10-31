@@ -120,22 +120,24 @@ authForm.addEventListener('submit', (e)=> {
     );
 
     if (!isUser) {
-        alertError.style.opacity = '1';
+        alertError.classList.remove("opacity-0");
         isAlertErrorVisible = true;
         if(isAlertErrorVisible) {
         setTimeout(()=>{
             alertError.classList.add('opacity-0')
-        }, 7000)
+        }, 5000)
     } 
     } else {
         document.cookie = `authUser=${isUser.id}; path=/; max-age=3600`;
         location.href = 'posts.html'
     }
     } else if (formType === formTypes[1]) {
-        users.push(formData);
+        users.push({id: users.length + 1, ...formData});
         authForm.remove();
         render(authFormMarkup);
         init(formTypes[0]);
+        document.cookie = `authUser=${isUser.id}; path=/; max-age=3600`;
+        location.href = 'posts.html';
     }
   
 
@@ -214,6 +216,11 @@ showPassword.addEventListener('mousedown', (e) => {
     authForm.remove();
     render(regFormMarkup);
     init(formTypes[1]);
+    if (formType === formTypes[1]) {
+        authForm.remove();
+        render(authFormMarkup);
+        init(formTypes[0]);  
+    }
   });
 };
 
